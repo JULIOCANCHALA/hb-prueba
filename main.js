@@ -18,18 +18,19 @@ class Grid {
     this.stop=this.node.querySelector('.stop')
   }
   setclick(){
-    this.node.addEventListener('click',function(event){
-      if (event.target.classList.contains('card')) {
-        const indexNew = Array.from(this.cards).indexOf(event.target)
-        this.cards[index].classList.remove('card-Selected')
-        this.index=indexNew
-        this.cards[index].classList.add('card-Selected')
-        this.game==1
-      }
-    })
-
+    this.node.addEventListener('click',this.changeIndex(event).bind(this))
     this.play.addEventListener('click',this.playGame().bind(this))
     this.stop.addEventListener('click',this.stopGame().bind(this))
+  }
+
+  changeIndex(event){
+    if (event.target.classList.contains('card')) {
+      const indexNew = Array.from(this.cards).indexOf(event.target)
+      this.cards[index].classList.remove('card-Selected')
+      this.index=indexNew
+      this.cards[index].classList.add('card-Selected')
+      this.game==1
+    }
   }
 
   playGame(){
